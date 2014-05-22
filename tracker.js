@@ -59,6 +59,14 @@ RT.populatePage = function () {
 	var query = this.parseQuery();
 	$('#terms').html(decodeURIComponent(query.q)); 
 	$('#subreddit').html(decodeURIComponent(query.subreddit));
+
+	if (query.q) {
+		$('#search-input').val(decodeURIComponent(query.q));
+	}
+	if (query.subreddit) {
+		$('#subreddit-input').val(decodeURIComponent(query.subreddit));
+	}
+	
 	RT.getPosts('hot', 30);
 	RT.getPosts('new', 30);
 	RT.getPosts('comments', 30);
