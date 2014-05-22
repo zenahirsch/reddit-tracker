@@ -7,20 +7,31 @@
 <body>
 <div id="wrapper">
 	<h1>Reddit Tracker</h1>
-	<input type="text" placeholder="What topic do you want to know about?" class="input" id="search-input" />
-	<input type="text" placeholder="Which subreddit?" class="input" id="subreddit-input" />
-	<p>Showing results for <strong><span id="terms">terms</span></strong>, in r/<strong><span id="subreddit">subreddit</span></strong></p>
-	<div class="col">
+	<div class="row">
+		<div class="col half">
+			<label for="search-input">search for</label><br />
+			<input type="text" placeholder="What topic do you want to know about?" class="input" id="search-input" />
+		</div>
+		<div class="col half">
+			<label for="subreddit-input">r/</label><br />
+			<input type="text" placeholder="Which subreddit?" class="input" id="subreddit-input" />
+		</div>
+	</div>
+	<div class="row">
+		<p id="readout">Showing results for <strong><span id="terms">terms</span></strong>, in r/<strong><span id="subreddit">
+	subreddit</span></strong></p>
+	</div>
+	<div class="col third">
 		<h2>hot</h2>
 		<ol id="hot">
 		</ol>
 	</div>
-	<div class="col">
+	<div class="col third">
 		<h2>new</h2>
 		<ol id="new">
 		</ol>
 	</div>
-	<div class="col">
+	<div class="col third">
 		<h2>comments</h2>
 		<ol id="comments">
 		</ol>
