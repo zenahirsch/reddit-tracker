@@ -1,0 +1,16 @@
+body {
+	font-family: helvetica, arial, sans-serif;
+	font-size: 12px;
+}
+
+.col {
+	width: 31%;
+	float: left;
+	padding: 0 1%;
+}
+
+li {
+	margin-bottom: 2em;
+	background-color: rgba(0, 0, 0, 0.03);
+	padding: 1em;
+}
