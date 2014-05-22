@@ -66,7 +66,7 @@ RT.populatePage = function () {
 	if (query.subreddit) {
 		$('#subreddit-input').val(decodeURIComponent(query.subreddit));
 	}
-	
+
 	RT.getPosts('hot', 30);
 	RT.getPosts('new', 30);
 	RT.getPosts('comments', 30);
@@ -96,5 +96,14 @@ $('.input').keypress(function (e) {
 		RT.getPosts('comments', 30);
 	}
 });
+
+window.onload = setupRefresh;
+
+function setupRefresh() {
+  setTimeout("refreshPage();", 10000);
+}
+function refreshPage() {
+   window.location = location.href;
+}
 
 RT.populatePage();
