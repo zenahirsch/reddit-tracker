@@ -1,11 +1,37 @@
 var RT = {};
-RT.terms = 'zena rocks';
-RT.subreddit = 'all';
+
+RT.parseQuery = function () {
+	var query = window.location.search.substring(1);
+	var vars = query.split('&');
+	var values = [];
+	var response = {};
+
+	var i = 0;
+	for (i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		values.push(pair[1]);
+	}
+	response.q = values[0];
+	response.subreddit = values[1];
+
+	return response;
+};
 
 RT.getPosts = function (sort, limit) {
-	var that = this;
+	var query = this.parseQuery();
+	var subreddit = 'none';
+	var terms = 'none';
+
+	if (query.subreddit) {
+		subreddit = query.subreddit;
+	}
+
+	if (query.q) {
+		terms = query.q;
+	}
+
 	$.ajax({
-		url : 'http://www.reddit.com/r/' + that.subreddit + '/search.json?q=' + that.terms + '&sort=' + sort + '&limit=' + limit,
+		url : 'http://www.reddit.com/r/' + subreddit + '/search.json?q=' + terms + '&sort=' + sort + '&limit=' + limit,
 		success : function (result) {
 			var data = result.data.children;
 			var created = '';
@@ -30,28 +56,33 @@ RT.getPosts = function (sort, limit) {
 };
 
 RT.populatePage = function () {
-	$('#terms').html(RT.terms); 
-	$('#subreddit').html(RT.subreddit);
+	var query = this.parseQuery();
+	$('#terms').html(decodeURIComponent(query.q)); 
+	$('#subreddit').html(decodeURIComponent(query.subreddit));
 	RT.getPosts('hot', 30);
 	RT.getPosts('new', 30);
 	RT.getPosts('comments', 30);
 };
 
 $('.input').keypress(function (e) {
+	var q = '';
+	var subreddit = '';
+
 	if (e.which == 13) {
 		if ($('#search-input').val()) {
-			RT.terms = encodeURIComponent($('#search-input').val());
+			q = encodeURIComponent($('#search-input').val());
 		} else {
-			RT.terms = encodeURIComponent('zena rocks');
+			q = encodeURIComponent('zena rocks');
 		}
 
 		if ($('#subreddit-input').val()) {
-			RT.subreddit = encodeURIComponent($('#subreddit-input').val());
+			subreddit = encodeURIComponent($('#subreddit-input').val());
 		} else {
-			RT.subreddit = encodeURIComponent('all');
+			subreddit = encodeURIComponent('all');
 		}
-		$('#terms').html(decodeURIComponent(RT.terms)); 
-		$('#subreddit').html(decodeURIComponent(RT.subreddit));
+
+		window.location.search = 'q=' + q + '&subreddit=' + subreddit;
+
 		RT.getPosts('hot', 30);
 		RT.getPosts('new', 30);
 		RT.getPosts('comments', 30);
