@@ -5,22 +5,26 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-<h1>Reddit Tracker</h1>
-<p>Showing results for <span id="terms">terms</span></p>
-<div class="col">
-	<h2>hot</h2>
-	<ol id="hot">
-	</ol>
-</div>
-<div class="col">
-	<h2>new</h2>
-	<ol id="new">
-	</ol>
-</div>
-<div class="col">
-	<h2>comments</h2>
-	<ol id="comments">
-	</ol>
+<div id="wrapper">
+	<h1>Reddit Tracker</h1>
+	<input type="text" placeholder="What topic do you want to know about?" class="input" id="search-input" />
+	<input type="text" placeholder="Which subreddit?" class="input" id="subreddit-input" />
+	<p>Showing results for <strong><span id="terms">terms</span></strong>, in r/<strong><span id="subreddit">subreddit</span></strong></p>
+	<div class="col">
+		<h2>hot</h2>
+		<ol id="hot">
+		</ol>
+	</div>
+	<div class="col">
+		<h2>new</h2>
+		<ol id="new">
+		</ol>
+	</div>
+	<div class="col">
+		<h2>comments</h2>
+		<ol id="comments">
+		</ol>
+	</div>
 </div>
 <script src="tracker.js"></script>
 </body>
