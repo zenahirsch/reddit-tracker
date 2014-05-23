@@ -26,6 +26,11 @@ body {
 	padding: 0 1%;
 }
 
+.quarter {
+	width: 23%;
+	padding: 0 1%;
+}
+
 #readout {
 	margin-top: 1em;
 }

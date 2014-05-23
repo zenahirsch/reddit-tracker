@@ -69,9 +69,10 @@ RT.populatePage = function () {
 		$('#subreddit-input').val(decodeURIComponent(query.subreddit));
 	}
 
-	RT.getPosts('hot', 30);
-	RT.getPosts('new', 30);
-	RT.getPosts('comments', 30);
+	RT.getPosts('hot', 10);
+	RT.getPosts('new', 10);
+	RT.getPosts('controversial', 10);
+	RT.getPosts('comments', 10);
 };
 
 $('.input').keypress(function (e) {
