@@ -34,7 +34,8 @@ RT.getPosts = function (sort, limit) {
 		url : 'http://www.reddit.com/r/' + subreddit + '/search.json?q=' + terms + '&sort=' + sort + '&limit=' + limit,
 		success : function (result) {
 			var data = result.data.children;
-			var created = '';
+			console.log(data);
+			var comments = '';
 			$('#' + sort).html('');
 			var i = 0;
 			for (i = 0; i < data.length; i++) {
@@ -44,7 +45,8 @@ RT.getPosts = function (sort, limit) {
 					data[i].data.title +
 					'</a><br>' +
 					'r/' + data[i].data.subreddit + '<br>' +
-					'created: ' + created +
+					'comments: ' + data[i].data.num_comments  + '<br>' +
+					'upvotes: ' + data[i].data.ups + ', downvotes: ' + data[i].data.downs +
 					'</li>');
 			}
 		},
